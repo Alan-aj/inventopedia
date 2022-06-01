@@ -3,9 +3,12 @@ from flask import *
 from werkzeug.utils import secure_filename
 
 from dbconnector import *
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app=Flask(__name__)
-app.secret_key="qwe"
+app.secret_key=os.getenv('SECRET_KEY')
 import smtplib
 from email.mime.text import MIMEText
 from flask_mail import Mail

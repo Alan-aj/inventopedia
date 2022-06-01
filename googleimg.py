@@ -2,7 +2,7 @@ import requests
 import re
 
 
-from src.dbconnector import *
+from dbconnector import *
 
 qry="SELECT * FROM `information` where Info_id > 972"
 

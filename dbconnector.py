@@ -31,7 +31,7 @@ load_dotenv()
 
 
 def iud(q, val):
-    con = pymysql.connect(host=os.getenv('HOST'), port=os.getenv('PORT'), user=os.getenv('USER'), passwd=os.getenv('PASSWD'), db=os.getenv('DB'))
+    con = pymysql.connect(host=os.getenv('HOST'), port=int(os.getenv('PORT')), user=os.getenv('USER'), passwd=os.getenv('PASSWD'), db=os.getenv('DB'))
     cmd = con.cursor()
     cmd.execute(q, val)
     id = cmd.lastrowid
@@ -40,7 +40,7 @@ def iud(q, val):
 
 
 def select(q):
-    con = pymysql.connect(host='localhost', port=3306, user='root', passwd='', db='invention_and_inventors')
+    con = pymysql.connect(host=os.getenv('HOST'), port=int(os.getenv('PORT')), user=os.getenv('USER'), passwd=os.getenv('PASSWD'), db=os.getenv('DB'))
     cmd = con.cursor()
     cmd.execute(q)
     s = cmd.fetchall()
@@ -48,7 +48,7 @@ def select(q):
 
 
 def selectall(q, val):
-    con = pymysql.connect(host='localhost', port=3306, user='root', passwd='', db='invention_and_inventors')
+    con = pymysql.connect(host=os.getenv('HOST'), port=int(os.getenv('PORT')), user=os.getenv('USER'), passwd=os.getenv('PASSWD'), db=os.getenv('DB'))
     cmd = con.cursor()
     cmd.execute(q, val)
     s = cmd.fetchall()
@@ -56,7 +56,7 @@ def selectall(q, val):
 
 
 def selectone(q, val):
-    con = pymysql.connect(host='localhost', port=3306, user='root', passwd='', db='invention_and_inventors')
+    con = pymysql.connect(host=os.getenv('HOST'), port=int(os.getenv('PORT')), user=os.getenv('USER'), passwd=os.getenv('PASSWD'), db=os.getenv('DB'))
     cmd = con.cursor()
     cmd.execute(q, val)
     s = cmd.fetchone()

@@ -1,6 +1,6 @@
 # Import the xlrd module
-from src.dbconnector import *
-from src.sample import searchfn
+from dbconnector import *
+from sample import searchfn
 import xlrd
 
 # Open the Workbook
