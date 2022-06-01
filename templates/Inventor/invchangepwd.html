@@ -1,0 +1,35 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Title</title>-->
+<!--</head>-->
+{% extends 'dashboard3.html' %}
+{% block body %}
+<body>
+<div align="center">
+<h1>Change Password</h1>
+<form id="form1" name="form1" method="post" action="/inchpsw">
+  <table width="500" border="0">
+    <tr>
+      <th width="259" height="31" scope="row">Old Password:</th>
+      <td width="223"><input type="password" name="oldpsw" id="textfield" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/></td>
+    </tr>
+    <tr>
+      <th height="30" scope="row">New Password:</th>
+      <td><input type="password" name="newpsw" id="textfield2" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/></td>
+    </tr>
+    <tr>
+      <th height="31" scope="row">Confirm Password:</th>
+      <td><input type="password" name="conpsw" id="textfield3" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/></td>
+    </tr>
+    <tr>
+      <th height="43" colspan="2" scope="row"><input type="submit" name="button" id="button" class="btn btn-info" value="Submit" /></th>
+    </tr>
+  </table>
+</form>
+<p>&nbsp;</p>
+  </div>
+</body>
+{% endblock %}
+<!--</html>-->

@@ -1,0 +1,237 @@
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Register - SB Admin</title>
+        <link href="../static/assets/css/styles.css" rel="stylesheet" />
+        <script src="../static/assets/https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+
+$(document).ready(function(){
+document.getElementById("myBtn").disabled = true;
+    $("input#inputun").keyup(function() {
+
+
+
+            var br = $('#inputun').val();
+
+
+
+            $.ajax({
+                type: 'POST',
+                url: "/usname",
+                data: { brand: br },
+
+                success: function(response) {
+                response=response.replace('"','');
+                response=response.replace('"','');
+document.getElementById("res").innerText=response;
+                }
+            });
+
+
+    });
+});
+</script>
+        <style>
+            input[type=text] {
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button{
+  background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+canvas{
+  /*prevent interaction with the canvas*/
+  pointer-events:none;
+}
+
+#btn{
+
+display:flex;
+}
+
+        </style>
+        <script type="text/javascript">
+            var code;
+function createCaptcha() {
+  //clear the contents of captcha div first
+  document.getElementById('captcha').innerHTML = "";
+  var charsArray =
+  "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
+  var lengthOtp = 6;
+  var captcha = [];
+  for (var i = 0; i < lengthOtp; i++) {
+    //below code will not allow Repetition of Characters
+    var index = Math.floor(Math.random() * charsArray.length + 1); //get the next character from the array
+    if (captcha.indexOf(charsArray[index]) == -1)
+      captcha.push(charsArray[index]);
+    else i--;
+  }
+  var canv = document.createElement("canvas");
+  canv.id = "captcha";
+  canv.width = 100;
+  canv.height = 50;
+  var ctx = canv.getContext("2d");
+  ctx.font = "25px Georgia";
+  ctx.strokeText(captcha.join(""), 0, 30);
+  //storing captcha so that can validate you can save it somewhere else according to your specific requirements
+  code = captcha.join("");
+  document.getElementById("captcha").appendChild(canv); // adds the canvas to the body element
+}
+function validateCaptcha() {
+  event.preventDefault();
+  debugger
+  if (document.getElementById("cpatchaTextBox").value == code) {
+   document.getElementById("myBtn").disabled = false;
+  }else{
+    alert("Invalid Captcha. try Again");
+    createCaptcha();
+  }
+}
+
+
+        </script>
+    </head>
+    <body background="./static/shutterstock_1010217037.jpg">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Inventor Sign Up</h3></div>
+                                    <div class="card-body">
+                                        <form id="form1" name="form1" method="post" action="invsignup" >
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputFirstName" name="finame" type="text" placeholder="Enter your first name" required pattern="[A-Z a-z.]{3,25}"/>
+                                                        <label for="inputFirstName">First name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" id="inputLastName" name="lsname" type="text" placeholder="Enter your last name" required pattern="[A-Z a-z.]{3,25}"/>
+                                                        <label for="inputLastName">Last name</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputEmail" name="mail" type="email" placeholder="name@example.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}"/>
+                                                <label for="inputEmail">Email address</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputun" name="usname" type="text" placeholder="" required/>
+                                                <label for="inputEmail">Username</label>
+                                                <p id="res"></p>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputdob" name="date" type="date" placeholder="" required min="1990-01-01" max="2019-12-31"/>
+                                                <label for="inputEmail">Date of Birth</label>
+                                            </div>
+                                             <div class="form-floating mb-3">
+                                                 <th height="31" scope="row">Gender:</th> &nbsp
+                                                 <td><input type="radio" name="radio" id="radio" value="radio" required/>
+                                                  Male
+                                                  <input type="radio" name="radio" id="radio2" value="radio2" required/>
+                                                  Female
+                                                  <input type="radio" name="radio" id="radio3" value="radio3" required/>
+                                                  Others</td>
+
+                                            </div>
+                                             <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputplace" name="plce" type="text" placeholder="" required pattern="[A-Z a-z.]{3,25}"/>
+                                                <label for="inputEmail">Place</label>
+                                            </div>
+                                             <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputpost" name="post" type="text" placeholder="" required pattern="[A-Z a-z.]{3,25}"/>
+                                                <label for="inputEmail">Post</label>
+                                            </div>
+                                             <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputpin" name="pin" type="text" placeholder="" required pattern="[0-9]{6}"/>
+                                                <label for="inputEmail">Pin</label>
+                                            </div>
+                                             <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputpno" name="phno" type="text" placeholder="" required pattern="[6789][0-9]{9}"/>
+                                                <label for="inputEmail">Phone Number</label>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputPassword" name="pwrd" type="password" placeholder="Create a password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/>
+                                                        <label for="inputPassword">Password</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputPasswordConfirm" name="pswrd" type="password" placeholder="Confirm password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/>
+                                                        <label for="inputPasswordConfirm">Confirm Password</label>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                            </div>
+                                              <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                         <div id="captcha">
+    </div>
+
+   <div id="btn"> <input type="text" placeholder="Captcha" id="cpatchaTextBox"/> &nbsp;&nbsp;&nbsp;
+    <button onclick="validateCaptcha()">Submit</button>   &nbsp;&nbsp; <button onclick="createCaptcha()">Refresh</button></div>
+                                                    </div>
+                                                </div>
+
+
+                                            <div class="mt-4 mb-0">
+                                                <div class="d-grid"><input type="submit" name="button" id="myBtn" class="btn btn-primary btn-block" value="Create Account" /></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="login.html">Have an account? Go to login</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <!--<div class="d-flex align-items-center justify-content-between small">-->
+                            <!--<div class="text-muted">Copyright &copy; Your Website 2021</div>-->
+                            <!--<div>-->
+                                <!--<a href="#">Privacy Policy</a>-->
+                                <!--&middot;-->
+                                <!--<a href="#">Terms &amp; Conditions</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="../static/assets/https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../static/assets/js/scripts.js"></script>
+    </body>
+</html>

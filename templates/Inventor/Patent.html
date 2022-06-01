@@ -1,0 +1,50 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard3.html' %}
+{% block body %}
+<body>
+<h1 align="center">Add Patent Details</h1>
+<form id="form1" name="form1" method="post" action="Addpatent" enctype="multipart/form-data" >
+  <table width="500" border="0" align="center">
+    <tr>
+      <th width="248" height="31" scope="row">Title:</th>
+      <td width="234"><input type="text" name="title" id="textfield" required pattern="[A-Z a-z.]{3,25}"/></td>
+    </tr>
+    <tr>
+      <th height="32" scope="row">Patent Number:</th>
+      <td><input type="text" name="pnum" id="textfield2" required  /></td>
+    </tr>
+    <tr>
+      <th height="32" scope="row">Co-Inventors:</th>
+      <td><input type="text" name="coinvt" id="textfield3" required /></td>
+    </tr>
+    <tr>
+      <th height="28" scope="row">Year-Date:</th>
+      <td><input type="date" name="date" id="textfield4" required min="1990-01-01" max="2019-12-31"/></td>
+    </tr>
+    
+    <tr>
+      <th height="29" scope="row">Abstract:</th>
+      <td><textarea name="abstract" id="textarea" required pattern="[A-Z a-z.]{3,25}"></textarea></td>
+    </tr>
+    <tr>
+      <th height="32" scope="row">Country:</th>
+      <td><input type="text" name="conty" id="textfield6" required pattern="[A-Z a-z.]{3,25}"/></td>
+    </tr>
+<tr>
+      <th height="32" scope="row">Certificate:</th>
+      <td><input type="file" name="certifi" id="textfield7" /></td>
+    </tr>
+    <tr>
+    <tr>
+      <th height="34" colspan="2" scope="row"><input type="submit" name="button" id="button" value="Submit" class="btn btn-info"/></th>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}
+<!--</html>-->

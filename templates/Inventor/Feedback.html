@@ -1,0 +1,41 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard3.html' %}
+{% block body %}
+<body>
+<h1 align="center">Feedback</h1>
+
+<form action="feedbackpge" method="post" >
+  <p align="center">
+  <h1></h1>
+  <h1></h1>
+  <p align="center"><label >
+
+   <input type="submit" name="Submit" value="Give Feedback" class="btn btn-success" align="center"/>
+  </label></p>
+</p>
+<table width="625" border="1" class="table table-hover ">
+  <thead class="thead-dark">
+  <tr>
+    <th width="218" height="43">Feedback</th>
+    <th width="185">Reply</th>
+    <th width="200">Date</th>
+  </tr>
+  </thead>
+  {% for i in val %}
+  <tr>
+    <td height="45">&nbsp;{{i[3]}}</td>
+    <td>&nbsp;{{i[4]}}</td>
+    <td>&nbsp;{{i[5]}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+</form>
+</body>
+{% endblock %}
+<!--</html>-->

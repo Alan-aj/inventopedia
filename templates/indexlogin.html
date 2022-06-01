@@ -1,0 +1,132 @@
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+    <title>Host Cloud Template - About Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../static/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../static/assets/css/templatemo-host-cloud.css">
+    <link rel="stylesheet" href="../static/assets/css/owl.css">
+<!--
+
+Host Cloud Template
+
+https://templatemo.com/tm-541-host-cloud
+
+-->
+  </head>
+
+  <body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><h2>Invention & Inventors <em></em></h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+             <div class="functional-buttons ml-auto">
+                 <ul>
+                 <li><a class="nav-link" href="/">Home</a></li>
+                 <li><a class="nav-link" href="usersign">SignUp</a>
+                    <a class="nav-link" href="invdetails">Inventor SignUp</a></li>
+                  </ul>
+                  </div>
+            <!--<ul class="navbar-nav ">-->
+
+
+
+
+
+
+            <!--</ul>-->
+          </div>
+
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page Content -->
+    <!-- Heading Starts Here -->
+    <div class="page-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            {% block body %}
+            {% endblock %}
+            <!--<h1>About Us</h1>-->
+            <!--<p><a href="index.html">Home</a> / <span>About Us</span></p>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Heading Ends Here -->
+
+
+
+
+    <!-- Footer Starts Here -->
+    <footer>
+      <div class="container">
+        <div class="row">
+
+          
+
+          
+
+          <div class="col-md-12">
+            <div class="sub-footer">
+              <p>Copyright &copy; 2020 Cloud Hosting Company
+				- Designed by <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer Ends Here -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Additional Scripts -->
+    <script src="../static/assets/js/custom.js"></script>
+    <script src="../static/assets/js/owl.js"></script>
+    <script src="../static/assets/js/accordions.js"></script>
+
+    <script language = "text/Javascript"> 
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+
+  </body>
+</html>

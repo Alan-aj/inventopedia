@@ -1,0 +1,42 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard3.html' %}
+{% block body %}
+<body>
+<h1 align="center">View Patents</h1>
+<h1></h1>
+<form id="form1" name="form1" method="post" action="" >
+  <table width="921" height="181" border="1" class="table table-striped table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th width="108" height="71">Title</th>
+      <th width="104">Patent Number </th>
+      <th width="103">Co-Inventors</th>
+      <th width="93">Date</th>
+      <th width="290">Abstract</th>
+      <th width="89">Country</th>
+      <th width="88">Certificate</th>
+    </tr>
+    </thead>
+    {% for i in val %}
+    <tr>
+      <td>{{i[2]}}</td>
+      <td>&nbsp;{{i[3]}}</td>
+      <td>&nbsp;{{i[4]}}</td>
+      <td>&nbsp;{{i[6]}}</td>
+      <td>&nbsp;{{i[8]}}</td>
+      <td>&nbsp;{{i[5]}}</td>
+      <td><a href="static/certificate/{{i[7]}}">{{i[7]}}</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  
+</form>
+<a href="#"></a>
+</body>
+{% endblock %}
+<!--</html>-->

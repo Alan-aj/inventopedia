@@ -1,0 +1,44 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard2.html' %}
+{% block body %}
+<body>
+<h1>Upload Information</h1>
+<form action="/upinfo" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table width="500" border="0">
+    <tr>
+      <th height="47" scope="row">Year</th>
+      <td><input type="text" name="year" id="textfield" required/></td>
+    </tr>
+     <tr>
+      <th height="46" scope="row">Invention</th>
+      <td><input type="text" name="invt" id="inv" required/></td>
+    </tr>
+    <tr>
+      <th height="47" scope="row">Inventor Name</th>
+      <td><input type="text" name="inventor" id="textfield2" required/></td>
+    </tr>
+    <tr>
+      <th height="113" scope="row">Description</th>
+      <td><textarea name="description" id="textarea" cols="45" rows="5" required></textarea></td>
+    </tr>
+    <tr>
+      <th height="65" scope="row">Image</th>
+      <td><input type="file" name="fileField" id="fileField" required/></td>
+    </tr>
+    <tr>
+      <!--<th height="30" scope="row">Video link</th>-->
+      <td><input type="hidden" name="video" id="textfield3" /></td>
+    </tr>
+     <tr>
+      <th height="57" colspan="2" scope="row"><p align="center"><input type="submit" name="button" id="button" value="Submit" class="btn btn-success"/></p></th>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}
+<!--</html>-->

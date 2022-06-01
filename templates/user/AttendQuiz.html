@@ -1,0 +1,59 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard2.html' %}
+{% block body %}
+<style>
+  .col{
+  width: 84%;
+  }
+
+</style>
+<body>
+
+
+
+<form action="/nextt" method="post">
+  <h1></h1>
+  <h1></h1>
+<h1 align="center"> Quiz</h1>
+  <div class="col">
+<table width="572" border="0" class="table">
+  <tr>
+    <th width="265" scope="row">{{val[1]}}&nbsp;</th>
+    <th width="289"></th>
+  </tr>
+
+  <tr>
+    <th scope="row"> <input type="radio" value="{{val[2]}}" name="opt" required/>{{val[2]}} </th>
+    <td></td>
+  </tr>
+
+  <tr>
+    <th scope="row"> <input type="radio" value="{{val[3]}}" name="opt"/>{{val[3]}} </th>
+    <td><input type="hidden" name="ans" value="{{val[6]}}"/></td>
+  </tr>
+
+  <tr>
+    <th scope="row"> <input type="radio" value="{{val[4]}}" name="opt"/>{{val[4]}} </th>
+    <td></td>
+  </tr>
+
+  <tr>
+    <th scope="row"> <input type="radio" value="{{val[5]}}" name="opt"/>{{val[5]}} </th>
+    <td></td>
+  </tr>
+<tr>
+    <th scope="row"> <input type="submit" value="NEXT" name="btn" class="btn btn-info"/> </th>
+    <td><input type="submit" value="FINISH" name="btn" class="btn btn-success"/></td>
+  </tr>
+
+</table>
+    </div>
+</form>
+</body>
+{% endblock %}
+<!--</html>-->

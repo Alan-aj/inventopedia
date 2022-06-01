@@ -1,0 +1,37 @@
+
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard2.html' %}
+{% block body %}
+
+<body>
+<h1 align="center">View Information</h1>
+<table width="500" border="2" class="table table-hover">
+  <thead class="thead-dark">
+  <tr>
+    <th width="92" scope="row">Year</th>
+    <th width="92">Invention</th>
+    <th width="92">Inventer Name</th>
+    <!--<th width="130">Invention Description</th>-->
+    <th width="54">Image</th>
+    <th width="96">Video Link</th>
+  </tr>
+  </thead>
+  {% for i in val %}
+  <tr>
+    <td scope="row">&nbsp;{% if i[1]<0 %}BC{% endif %}{{i[1]}}</td>
+    <td><a href="/more_details1?id={{i[0]}}">{{i[2]}}</a></td>
+    <td>&nbsp;{{i[3]}}</td>
+    <!--<td>&nbsp;{{i[4]}}</td>-->
+    <td>&nbsp;{% if i[7]|string =="1" %}<a href="{{i[5]}}"> <img src="{{i[5]}}" > </a>{% else %}<a href="../static/image/{{i[5]}}"> <img src="../static/image/{{i[5]}}" ></a> {% endif %}</td>
+    <td><a href="https://www.youtube.com/results?search_query={{i[2]}}">video Link</a></td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+{% endblock %}
+<!--</html>-->

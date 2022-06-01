@@ -1,0 +1,40 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard3.html' %}
+{% block body %}
+<style>
+.tab{
+margin-left:50px;
+
+}
+
+</style>
+
+<body>
+<h1 align="center">Reply</h1>
+<form id="form2" name="form2" method="post" action="invreply">
+  <div class="tab">
+  <table width="200" border="0" align="center" class="table table-hover">
+  <tr>
+    <td height="106">Reply:</td>
+    <td><label>
+      <textarea name="textarea"></textarea>
+    </label></td>
+  </tr>
+  <tr>
+    <td height="91" colspan="2"><label>
+      <input type="submit" name="invreply" value="Send" class="btn btn-info"/>
+    </label></td>
+    </tr>
+</table>
+    </div>
+
+</form>
+<p>&nbsp;</p>
+</body>
+{% endblock %}
+<!--</html>-->

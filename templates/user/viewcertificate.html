@@ -1,0 +1,42 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard2.html' %}
+{% block body %}
+<body>
+
+<h1 align="center">View Patent</h1>
+<table width="1055" border="2" class="table table-hover">
+    <thead class="thead-dark">
+  <tr>
+     <th width="95" height="71">Title</th>
+      <th width="108">Patent Number </th>
+      <th width="120">Co-Inventors</th>
+      <th width="97">Date</th>
+      <th width="282">Abstract</th>
+      <th width="124">Country</th>
+      <th width="181">Certificate</th>
+  </tr>
+  </thead>
+  {% for i in val %}
+    <tr>
+      <td height="51">{{i[2]}}</td>
+      <td>&nbsp;{{i[3]}}</td>
+      <td>&nbsp;{{i[4]}}</td>
+      <td>&nbsp;{{i[6]}}</td>
+      <td>&nbsp;{{i[8]}}</td>
+      <td>&nbsp;{{i[5]}}</td>
+      <td><a href="static/certificate/{{i[7]}}">{{i[7]}}</a></td>
+    </tr>
+    {% endfor %}
+  <!--<tr>-->
+    <!--<th colspan="4" scope="row"><a href="addcerti">Add</a></th>-->
+  <!--</tr>-->
+</table>
+
+</body>
+{% endblock %}
+<!--</html>-->

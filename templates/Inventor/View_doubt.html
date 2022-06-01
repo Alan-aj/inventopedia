@@ -1,0 +1,33 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard3.html' %}
+{% block body %}
+<body>
+<h1 align="center">View Doubt</h1>
+<table width="456" border="1" class="table table-hover">
+  <thead class="thead-dark">
+  <tr>
+    <th width="129">User's Name </th>
+    <th width="166">Doubt</th>
+    <th width="73">Date</th>
+    <th width="60">&nbsp;</th>
+  </tr>
+  {% for i in val %}
+  <tr>
+    <td>{{i[3]}}{{i[4]}}</td>
+    <td> {{i[1]}}</td>
+    <td>{{i[2]}}</td>
+    <td><a href="/reply?id={{i[0]}}">Reply</a></td>
+
+  </tr>
+  </thead>
+  {% endfor %}
+</table>
+<p>&nbsp;</p>
+</body>
+{% endblock %}
+<!--</html>-->

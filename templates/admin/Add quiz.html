@@ -1,0 +1,47 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+
+{% extends 'dashboard1.html' %}
+{% block body %}
+
+<body>
+<h1 align="center">Add Quiz</h1>
+<form id="form1" name="form1" method="post" action="/addq">
+  <table width="500" border="0" align="center">
+    <tr>
+      <th width="179" height="31" scope="row">Question:</th>
+      <td width="311"><input type="text" name="question" id="textfield" required/></td>
+    </tr>
+    <tr>
+      <th height="31" scope="row">Option 1 </th>
+      <td><input type="text" name="op1" required/></td>
+    </tr>
+    <tr>
+      <th height="31" scope="row">Option 2 </th>
+      <td><input type="text" name="op2" required/></td>
+    </tr>
+    <tr>
+      <th height="31" scope="row">option 3 </th>
+      <td><input type="text" name="op3" required/></td>
+    </tr>
+    <tr>
+      <th height="31" scope="row">option 4 </th>
+      <td><input type="text" name="op4" required/></td>
+    </tr>
+    <tr>
+      <th height="31" scope="row">Answer:</th>
+      <td><input type="text" name="answer" id="textfield2" required/></td>
+    </tr>
+   <tr>
+      <th height="32" colspan="2" scope="row"><input type="submit" name="button" id="button" value="Submit" class="btn btn-info"/></th>
+    </tr>
+  </table>
+</form>
+<p>&nbsp;</p>
+</body>
+{% endblock %}
+<!--</html>-->

@@ -1,0 +1,32 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard4.html' %}
+{% block body %}
+
+<body>
+<h1></h1>
+<h1></h1>
+<table width="1004" border="0">
+  {% for i in val %}
+  <tr align="center">
+    <td width="998" height="49"  align="center"> <h2>{{i[2]}}</h2></td>
+  </tr>
+  <tr  align="center">
+    <td height="207"  align="center">{% if f =="0" %}<a href="{{i[5]}}"> <img src="{{i[5]}}" width="250" height="250"> </a>{% else %}<a href="../static/image/{{i[5]}}"> <img src="../static/image/{{i[5]}}" width="250" height="250" ></a> {% endif %}</td>
+  </tr>
+  <tr>
+    <td height="499">&nbsp;<font size="5" ><p align="justify">{{i[4]}} </p></font></td>
+  </tr>
+  <tr >
+    <td height="51" align="center">&nbsp;<a target="/" href="https://www.youtube.com/results?search_query={{i[2]}}" class="btn btn-primary" >video link</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+{% endblock %}
+<!--</html>-->

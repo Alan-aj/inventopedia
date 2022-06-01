@@ -1,0 +1,40 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard4.html' %}
+{% block body %}
+<h1></h1>
+<h1></h1>
+<body>
+<div id="more">
+<table width="710" height="90" border="1" align="center" class="table table-hover table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th width="203">Year</th>
+    <th width="252">Invention</th>
+    <th width="233">Inventor(s)</th>
+  </tr>
+  </thead>
+    {% for i in val %}
+
+  <tr>
+    <td > {% if i[1]<0 %}BC{% endif %}{{i[1]}}</td>
+    <td> <a href="/more_details1?id={{i[0]}}">{{i[2]}}</a></td>
+    <td>&nbsp;{{i[3]}}</td>
+  </tr>
+   {% endfor %}
+</table>
+</div>
+</body>
+<style>
+
+  #more{
+  width:95%;
+
+  }
+</style>
+{% endblock %}
+<!--</html>-->

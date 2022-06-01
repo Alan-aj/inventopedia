@@ -1,0 +1,42 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard2.html' %}
+{% block body %}
+<body>
+<h1 align="center">View Information</h1>
+<p align="center"><a href="uploadin" class="btn btn-warning">Add</a></p>
+<table width="1049" border="2" class="table table-hover">
+  <thead class="thead-dark">
+  <tr>
+    <th width="50" scope="row">Year</th>
+    <th width="82">Invention</th>
+    <th width="110">Inventer name</th>
+    <th width="355">Description</th>
+    <th width="104">Image</th>
+    <th width="110">Video</th>
+    <th width="118">Status</th>
+    <th width="66">&nbsp;</th>
+  </tr>
+  </thead>
+  {% for i in val %}
+  <tr>
+    <th scope="row">&nbsp;{{i[1]}}</th>
+    <td>&nbsp;{{i[2]}}</td>
+    <td>&nbsp;{{i[3]}}</td>
+     <td>&nbsp;{{i[4]}}</td>
+    <td>&nbsp;<img src="./static/image/{{i[5]}}" width="100" height="100"></td>
+    <td>&nbsp;<a href="https://www.youtube.com/results?search_query={{i[2]}}" target="_blank">{{i[6]}}Video Link</a></td>
+    <td>{{i[8]}}</td>
+    <td><a href="/delupinfo?id={{i[0]}}" class="btn btn-warning">Delete</a></td>
+  </tr>
+   {% endfor %}
+</table>
+
+<p>&nbsp;</p>
+</body>
+{% endblock %}
+<!--</html>-->

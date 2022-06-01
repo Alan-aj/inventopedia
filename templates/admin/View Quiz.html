@@ -1,0 +1,40 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'dashboard1.html' %}
+{% block body %}
+<body>
+<h1 align="center"> Quiz</h1>
+<p align="center"><a href="addquiz" class="btn btn-success">Add</a></p>
+<table width="500" border="2" class="table table-striped table-hover">
+  <thead class="thead-dark">
+  <tr>
+    <th height="29" scope="row">Question</th>
+
+    <th>Option1</th>
+    <th>Option2</th>
+    <th>Option3</th>
+    <th>Option4</th>
+    <th>Answer</th>
+    <th>&nbsp;</th>
+  </tr>
+  </thead>
+   {% for i in val %}
+  <tr>
+    <td scope="row">{{i[1]}}</td>
+    <td>{{i[2]}}</td>
+    <td>{{i[3]}}</td>
+    <td>{{i[4]}}</td>
+    <td>{{i[5]}}</td>
+    <td>{{i[6]}}</td>
+    <td><div align="center"><a href="/delquiz?id={{i[0]}}">Delete</a></div></td>
+  </tr>
+    {% endfor %}
+</table>
+
+</body>
+{% endblock %}
+<!--</html>-->
