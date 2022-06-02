@@ -920,35 +920,31 @@ def inventorchat():
 
 @app.route('/invdetails')
 def invdetails():
-    return render_template("register1.html")
+    return render_template("register_inv.html")
 
 @app.route('/invsignup',methods=['post'])
 def invsignup():
     try:
-        fname = request.form['finame']
-        lname = request.form['lsname']
+        name = request.form['name']
         uname = request.form['usname']
         dobirth = request.form['date']
         gndr = request.form['radio']
-        place = request.form['plce']
-        pst = request.form['post']
-        pcode = request.form['pin']
         emid = request.form['mail']
-        phone = request.form['phno']
         pswd = request.form['pwrd']
         cpswd = request.form['pswrd']
 
         if pswd == cpswd:
-            qry = "insert into login values(null,%s,%s,'inventor')"
-            val = (uname, pswd)
+            qry = "insert into login values(null,%s,%s,%s,'inventor')"
+            val = (uname, pswd, emid)
             lid = iud(qry, val)
-            qry1 = "insert into inventor values(null,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-            val1 = (fname, lname, dobirth, gndr, place, pst, pcode, emid, phone, str(lid))
+            qry1 = "insert into inventor values(null,%s,%s,%s,%s,%s)"
+            val1 = (name, dobirth, gndr, emid, str(lid))
             iud(qry1, val1)
-            return '''<script>alert("welcome Inventor");window.location="/"</script>'''
+            return '''<script>alert("welcome Inventor, login to continue");window.location="/indexlogin"</script>'''
         else:
             return '''<script>alert("password not correct"); window.location="/invdetails"</script>'''
     except Exception as e:
+        print(e)
         return '''<script>alert("Already Exist"); window.location="/invdetails"</script>'''
 
 

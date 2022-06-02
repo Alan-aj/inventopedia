@@ -68,6 +68,7 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+
         input[type=text] {
             padding: 12px 20px;
             display: inline-block;
@@ -96,7 +97,7 @@
             display: flex;
         }
     </style>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         var code;
         function createCaptcha() {
             //clear the contents of captcha div first
@@ -135,7 +136,7 @@
         }
 
 
-    </script>
+    </script> -->
 </head>
 
 <body background="./static/shutterstock_1010217037.jpg">
@@ -151,40 +152,29 @@
                                 </div>
                                 <div class="card-body">
                                     <form id="form1" name="form1" method="post" action="invsignup">
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputFirstName" name="finame"
-                                                        type="text" placeholder="Enter your first name" required
-                                                        pattern="[A-Z a-z.]{3,25}" />
-                                                    <label for="inputFirstName">First name</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating">
-                                                    <input class="form-control" id="inputLastName" name="lsname"
-                                                        type="text" placeholder="Enter your last name" required
-                                                        pattern="[A-Z a-z.]{3,25}" />
-                                                    <label for="inputLastName">Last name</label>
-                                                </div>
-                                            </div>
-                                        </div>
 
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputFulltName" name="name" type="text"
+                                                placeholder="Enter your full name" required
+                                                pattern="[A-Z a-z.]{3,25}" />
+                                            <label for="inputFullName">Full name</label>
+                                        </div>
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="inputEmail" name="mail" type="email"
                                                 placeholder="name@example.com" required
                                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" />
                                             <label for="inputEmail">Email address</label>
+                                            <p id="rem"></p>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="inputun" name="usname" type="text"
-                                                placeholder="" required />
+                                                placeholder="Username" required />
                                             <label for="inputEmail">Username</label>
                                             <p id="res"></p>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="inputdob" name="date" type="date"
-                                                placeholder="" required min="1990-01-01" max="2019-12-31" />
+                                                placeholder="DOB" required min="1990-01-01" max="2019-12-31" />
                                             <label for="inputEmail">Date of Birth</label>
                                         </div>
                                         <div class="form-floating mb-3">
@@ -198,32 +188,13 @@
                                             </td>
 
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputplace" name="plce" type="text"
-                                                placeholder="" required pattern="[A-Z a-z.]{3,25}" />
-                                            <label for="inputEmail">Place</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputpost" name="post" type="text"
-                                                placeholder="" required pattern="[A-Z a-z.]{3,25}" />
-                                            <label for="inputEmail">Post</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputpin" name="pin" type="text"
-                                                placeholder="" required pattern="[0-9]{6}" />
-                                            <label for="inputEmail">Pin</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputpno" name="phno" type="text"
-                                                placeholder="" required pattern="[6789][0-9]{9}" />
-                                            <label for="inputEmail">Phone Number</label>
-                                        </div>
+
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <input class="form-control" id="inputPassword" name="pwrd"
                                                         type="password" placeholder="Create a password" required
-                                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                                        pattern="(?=.*\d)(?=.*[a-z]).{6,}"
                                                         title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
                                                     <label for="inputPassword">Password</label>
                                                 </div>
@@ -232,17 +203,15 @@
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <input class="form-control" id="inputPasswordConfirm" name="pswrd"
                                                         type="password" placeholder="Confirm password" required
-                                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                                        pattern="(?=.*\d)(?=.*[a-z]).{6,}"
                                                         title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
                                                     <label for="inputPasswordConfirm">Confirm Password</label>
                                                 </div>
                                             </div>
 
 
-
-
                                         </div>
-                                        <div class="col-md-6">
+                                        <!-- <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
                                                 <div id="captcha">
                                                 </div>
@@ -253,12 +222,14 @@
                                                     <button onclick="createCaptcha()">Refresh</button>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
 
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><input type="submit" name="button" id="myBtn"
-                                                    class="btn btn-primary btn-block" value="Create Account" /></div>
+                                            <div class="d-grid">
+                                                <input type="submit" name="button" id="myBtn"
+                                                class="btn btn-primary btn-block" value="Create Account" />
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
