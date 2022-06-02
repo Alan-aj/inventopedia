@@ -114,9 +114,9 @@ def newlogin():
 
 
 
-@app.route("/adminhom")
+@app.route("/adminhome")
 @login_required
-def adminhom():
+def adminhome():
     return render_template("admin/Adminhome.html")
 
 
@@ -1274,15 +1274,15 @@ def otp():
             gmail = smtplib.SMTP('smtp.gmail.com', 587)
             gmail.ehlo()
             gmail.starttls()
-            gmail.login('inventonandinventor@gmail.com', 'invention123')
+            gmail.login(os.getenv('GMAIL'), os.getenv('CODE'))
         except Exception as e:
             print("Couldn't setup email!!" + str(e))
         msg = MIMEText("Your otp is " + str(otp))
         session['otp']=otp
         print(msg)
-        msg['Subject'] = 'Password'
+        msg['Subject'] = 'Email verification'
         msg['To'] = email
-        msg['From'] = 'inventonandinventor@gmail.com'
+        msg['From'] = os.getenv('GMAIL')
         try:
             gmail.send_message(msg)
             return '''<script>alert("otp is sent"); window.location="/otpverif"</script>'''
@@ -1299,9 +1299,9 @@ def otpveri():
     otp=request.form["name"]
     otps=session['otp']
     if int(otp)==int(otps):
-        return '''<script>alert("email succrssfully registered"); window.location="/reg"</script>'''
+        return '''<script>alert("Email succrssfully registered"); window.location="/reg"</script>'''
     else:
-        return '''<script>alert("incorrect otp"); window.location="/otpverif"</script>'''
+        return '''<script>alert("Incorrect otp"); window.location="/otpverif"</script>'''
 
 
 
@@ -1321,15 +1321,15 @@ def otptwo():
             gmail = smtplib.SMTP('smtp.gmail.com', 587)
             gmail.ehlo()
             gmail.starttls()
-            gmail.login('inventonandinventor@gmail.com', 'invention123')
+            gmail.login(os.getenv('GMAIL'), os.getenv('CODE'))
         except Exception as e:
             print("Couldn't setup email!!" + str(e))
         msg = MIMEText("Your otp is " + str(otp))
         session['otp']=otp
         print(msg)
-        msg['Subject'] = 'Password'
+        msg['Subject'] = 'Email verification'
         msg['To'] = email
-        msg['From'] = 'inventonandinventor@gmail.com'
+        msg['From'] = os.getenv('GMAIL')
         try:
             gmail.send_message(msg)
             return '''<script>alert("otp is sent"); window.location="/otpveriftwo"</script>'''
@@ -1346,7 +1346,7 @@ def otpveritwo():
     otp=request.form["name1"]
     otps=session['otp']
     if int(otp)==int(otps):
-        return '''<script>alert("email succrssfully registered"); window.location="/reg1"</script>'''
+        return '''<script>alert("email successfully registered"); window.location="/reg1"</script>'''
     else:
         return '''<script>alert("incorrect otp"); window.location="/otpveriftwo"</script>'''
 
