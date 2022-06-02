@@ -93,15 +93,15 @@ def newlogin():
     res=selectone(qry,val)
     if res is None:
         return '''<script>alert("invalid"); window.location="/"</script>'''
-    elif res[3]=="admin":
+    elif res[4]=="admin":
         session['lid']=res[0]
         return '''<script>alert("Welcome Admin"); window.location="adminhom"</script>'''
-    elif res[3] == "user":
+    elif res[4] == "user":
         session['lid']=res[0]
         print(session['lid'])
 
         return '''<script>alert("Welcome user"); window.location="userhome"</script>'''
-    elif res[3]=="inventor":
+    elif res[4]=="inventor":
         session['lid']=res[0]
         return '''<script>alert("Welcome inventor"); window.location="/inventorhome"</script>'''
 
@@ -610,8 +610,8 @@ def usign():
         cpswd=request.form['pswrd']
 
         if pswd==cpswd:
-            qry="insert into login values(null,%s,%s,'user')"
-            val=(uname,pswd)
+            qry="insert into login values(null,%s,%s,%s,'user')"
+            val=(uname,pswd,emid)
             lid=iud(qry,val)
             qry1="insert into user values(null,%s,%s,%s)"
             val1=(name,emid,str(lid))
@@ -1227,6 +1227,29 @@ def usname():
 
     else:
         resp = make_response(json.dumps("Username existing"))
+
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        return resp
+
+@app.route("/usemail",methods=['POST'])
+def usemail():
+    print(request.form)
+    usremail=request.form['brand']
+    qry="SELECT `Email`FROM `login` where Email=%s"
+    val=(usremail)
+
+    res=selectone(qry,val)
+    print(res)
+    if res is None:
+
+        resp = make_response(json.dumps(""))
+
+        resp.status_code = 200
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        return resp
+
+    else:
+        resp = make_response(json.dumps("Email existing"))
 
         resp.headers['Access-Control-Allow-Origin'] = '*'
         return resp
