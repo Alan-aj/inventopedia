@@ -4,5 +4,5 @@ build/
 static/
 .env
 
-Book1.xlsx
+*xlsx
 samplee.py
