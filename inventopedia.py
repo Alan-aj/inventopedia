@@ -920,7 +920,7 @@ def inventorchat():
 
 @app.route('/invdetails')
 def invdetails():
-    return render_template("Inventor/Inventor.html")
+    return render_template("register1.html")
 
 @app.route('/invsignup',methods=['post'])
 def invsignup():
