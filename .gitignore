@@ -3,3 +3,6 @@ env/
 build/
 static/
 .env
+
+Book1.xlsx
+samplee.py
