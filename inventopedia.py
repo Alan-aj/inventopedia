@@ -317,7 +317,7 @@ def manageinfo():
 @app.route("/verifycomment")
 @login_required
 def verifycomment():
-    qry="SELECT `user`.`First_Name`,`Last_Name`,`Emai_id` ,`comment`.* FROM `comment` JOIN `user` ON `user`.`login_id`=`comment`.`User_id` WHERE `comment`.`Reply`='pending'"
+    qry="SELECT `user`.`Name`,`Emai_id` ,`comment`.* FROM `comment` JOIN `user` ON `user`.`login_id`=`comment`.`User_id` WHERE `comment`.`Reply`='pending'"
     res=select(qry)
 
     return render_template("admin/Verify comment.html",val=res)
@@ -603,16 +603,9 @@ def usersign():
 
 def usign():
     try:
-        fname=request.form['finame']
-        lname=request.form['lsname']
+        name=request.form['name']
         uname=request.form['usname']
-        dobirth=request.form['date']
-        gndr=request.form['radio']
-        place=request.form['plce']
-        pst=request.form['post']
-        pcode=request.form['pin']
         emid=request.form['mail']
-        phone=request.form['phno']
         pswd=request.form['pwrd']
         cpswd=request.form['pswrd']
 
@@ -620,10 +613,10 @@ def usign():
             qry="insert into login values(null,%s,%s,'user')"
             val=(uname,pswd)
             lid=iud(qry,val)
-            qry1="insert into user values(null,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-            val1=(fname,lname,dobirth,gndr,place,pst,pcode,emid,phone,str(lid))
+            qry1="insert into user values(null,%s,%s,%s)"
+            val1=(name,emid,str(lid))
             iud(qry1,val1)
-            return'''<script>alert("welcome user");window.location="/"</script>'''
+            return'''<script>alert("welcome user, login with your username");window.location="/indexlogin"</script>'''
         else:
             return'''<script>alert("password not correct"); window.location="/usersign"</script>'''
     except Exception as e:
@@ -886,7 +879,7 @@ def addpatent():
 @app.route('/doubtview')
 @login_required
 def doubtview():
-    qry="SELECT `doubt`.`Doubt_id`,`doubt`.`Doubt`,`doubt`.`Date`,`user`.`First_Name`,`user`.`Last_Name` FROM `doubt` JOIN `user` ON `doubt`.`User_id`=`user`.`login_id` WHERE `doubt`.`Inv_id`=%s AND `doubt`.`Reply`='pending'"
+    qry="SELECT `doubt`.`Doubt_id`,`doubt`.`Doubt`,`doubt`.`Date`,`user`.`Name` FROM `doubt` JOIN `user` ON `doubt`.`User_id`=`user`.`login_id` WHERE `doubt`.`Inv_id`=%s AND `doubt`.`Reply`='pending'"
     val=(str(session['lid']))
     print()
     res=selectall(qry,val)
@@ -1190,14 +1183,14 @@ def fgrtpwd():
             gmail = smtplib.SMTP('smtp.gmail.com', 587)
             gmail.ehlo()
             gmail.starttls()
-            gmail.login('inventonandinventor@gmail.com', 'invention123')
+            gmail.login(os.getenv('GMAIL'), os.getenv('CODE'))
         except Exception as e:
             print("Couldn't setup email!!" + str(e))
         msg = MIMEText("Your password is " + res[2])
         print(msg)
-        msg['Subject'] = 'Password'
+        msg['Subject'] = 'Change password'
         msg['To'] = email
-        msg['From'] = 'inventonandinventor@gmail.com'
+        msg['From'] = os.getenv('GMAIL')
         try:
             gmail.send_message(msg)
         except Exception as e:

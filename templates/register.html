@@ -6,22 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Register - SB Admin</title>
+    <title>Register - User</title>
     <link href="../static/assets/css/styles.css" rel="stylesheet" />
-    <script src="../static/assets/https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
 
         $(document).ready(function () {
-            document.getElementById("myBtn").disabled = true;
+
             $("input#inputun").keyup(function () {
-
-
-
                 var br = $('#inputun').val();
-
-
 
                 $.ajax({
                     type: 'POST',
@@ -32,14 +27,26 @@
                         response = response.replace('"', '');
                         response = response.replace('"', '');
                         document.getElementById("res").innerText = response;
+                        if (document.getElementById("res").innerText != "") {
+                            document.getElementById("myBtn").disabled = true;
+                        } else {
+                            document.getElementById("myBtn").disabled = false;
+                        }
                     }
                 });
-
 
             });
         });
     </script>
     <style>
+        body,
+        html {
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
         input[type=text] {
             padding: 12px 20px;
             display: inline-block;
@@ -68,7 +75,7 @@
 
         }
     </style>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         var code;
         function createCaptcha() {
             //clear the contents of captcha div first
@@ -107,7 +114,7 @@
         }
 
 
-    </script>
+    </script> -->
 </head>
 
 <body background="./static/shutterstock_1010217037.jpg">
@@ -123,8 +130,8 @@
                                 </div>
                                 <div class="card-body">
                                     <form id="form1" name="form1" method="post" action="usign">
-                                        <div class="row mb-3">
-                                            <!-- <div class="col-md-6">
+                                        <!-- <div class="row mb-3">
+                                            <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <input name="finame" class="form-control" id="inputFirstName"
                                                         name="finame" type="text" placeholder="Enter your first name"
@@ -140,7 +147,13 @@
                                                     <label for="inputLastName">Last name</label>
                                                 </div>
 
-                                            </div> -->
+                                            </div>
+                                        </div> -->
+                                        <div class="form-floating mb-3">
+                                            <input name="name" class="form-control" id="inputName" name="name"
+                                                type="text" placeholder="Enter your name" required
+                                                pattern="[A-Z a-z.]{3,25}" />
+                                            <label for="inputName">Full name</label>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input name="mail" class="form-control" id="inputEmail" type="text"
@@ -150,8 +163,8 @@
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input name="usname" class="form-control" id="inputun" name="usname"
-                                                type="text" placeholder="name@example.com" required />
-                                            <label for="inputEmail">Username</label>
+                                                type="text" placeholder="user" required />
+                                            <label for="inputUser">Username</label>
                                             <p id="res"></p>
                                         </div>
                                         <!-- <div class="form-floating mb-3">
@@ -232,8 +245,9 @@
 
 
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><input type="submit" name="button" id="myBtn"
-                                                    class="btn btn-primary btn-block" value="Create Account" /></a>
+                                            <div class="d-flex justify-content-center"><input type="submit"
+                                                    name="button" id="myBtn" class="btn btn-primary btn-block"
+                                                    value="Create Account" /></a>
                                             </div>
                                         </div>
                                     </form>
@@ -247,22 +261,22 @@
                 </div>
             </main>
         </div>
-        <div id="layoutAuthentication_footer">
+        <!-- <div id="layoutAuthentication_footer">
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
-                    <!--<div class="d-flex align-items-center justify-content-between small">-->
-                    <!--<div class="text-muted">Copyright &copy; Your Website 2021</div>-->
-                    <!--<div>-->
-                    <!--<a href="#">Privacy Policy</a>-->
-                    <!--&middot;-->
-                    <!--<a href="#">Terms &amp; Conditions</a>-->
-                    <!--</div>-->
-                    <!--</div>-->
+                    <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                    <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                    </div>
                 </div>
             </footer>
-        </div>
+        </div> -->
     </div>
-    <script src="../static/assets/https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="../static/assets/js/scripts.js"></script>
 </body>
