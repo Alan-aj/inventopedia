@@ -5,7 +5,7 @@
 
     $(document).ready(function () {
         $("button#search").click(function () {
-            
+
             var br = $('#info').val();
             // console.log(br);
             $.ajax({
@@ -14,14 +14,31 @@
                 data: { brand: br },
 
                 success: function (response) {
-                    console.log(response);
+                    // console.log(response);
                     var json = $.parseJSON(response);
 
                     // console.log(json.des);
-                    document.getElementById("res").innerText = json.des;
-                    document.getElementById("image").src = json.img;
-                    
+                    // var desc = unescape(json.des)
+                    // console.log(desc)
+
+                    if (json.img == "/static/images/footer/poweredby_mediawiki_88x31.png" || json.img == "") {
+
+                        document.getElementById("res").innerHTML = "No results found";
+                        document.getElementById("image").src = "";
+                    }
+                    else {
+                        document.getElementById("image").src = json.img;
+                        document.getElementById("res").innerText = json.des;
+                    }
+
                 }
+                // error: function (jqXHR, textStatus, errorThrown) {
+                //     if (jqXHR.status == 404 || errorThrown == 'Not Found') {
+                //         console.log('There was a 404 error.');
+                //         document.getElementById("res").innerText = "No results found";
+                //         document.getElementById("image").src = json.img;
+                //     }
+                // }
             });
 
         });
@@ -34,7 +51,7 @@
 <!-- <body> -->
 <h1 align="center" style="padding:20px;" class="text-5xl">WELCOME</h1>
 <!-- <div class="box-border h-32 w-300 p-4 border-4 my-10 bg--300">Search</div> -->
-<div class="font-sans text-black min-h-screen bg- flex items-center justify-center">
+<div class="font-sans text-black h-50 bg- flex items-center justify-center">
     <div class="border rounded overflow-hidden flex">
         <input type="text" class="px-12 py-3 text-2xl" placeholder="Search..." id="info">
         <button id="search" class="flex items-center justify-center px-4 border-l" style="background: #00B4CC;">
@@ -45,10 +62,10 @@
             </svg>
         </button>
     </div><br>
-    
+
 </div>
 <div>
     <p id="res"></p>
-    <img src="" id="image" >
+    <img src="" id="image">
 </div>
 {% endblock %}

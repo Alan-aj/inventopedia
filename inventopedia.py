@@ -1384,7 +1384,7 @@ def serinfo():
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
-    
+import html   
 
 def searchfn(key):
     res1=requests.get("https://en.wikipedia.org/wiki/"+key).text
@@ -1392,34 +1392,51 @@ def searchfn(key):
 
 
     res=res.split("<p>")
+    # print(res[1])
+
+    match = re.search(r'mw-parser', res[1])
+# If-statement after search() tests if it succeeded
+    if match:
+        print('found', match.group())
+        n = 2
+    else:
+        print('did not find')
+        n = 1
+
     count = 3
     if len(res) < 3:
         count = len(res)
 
     txt=""
     # print()
-    for i in range(1,count):
+    for i in range(n,count):
 
         htmlString=res[i].split("</p>")[0]
         s2 = re.sub(r'<.*?>', '', htmlString)
         s2=re.sub(r'&#91;.*?#93;', '', s2)
         s3=re.sub('\s', ' ', s2)
-        s4 = re.sub(r'\([^)]*\)', '', s3)
+        s4 = re.sub(r'\{[^)]*\}', '', s3)
 
         txt=txt+s4+" "
         
     # txt.replace("\n", "")
-    print(txt)
+    # print(html.unescape(txt))
+    txt2 = html.unescape(txt)
+    print(txt2)
+    print("----------------")
 
+    try:
+        res=res1.split('class="thumbinner"')[1].split('src="')
+        res=res[1].split('"')[0]
+# [1].split('"')[0]
+    # print(res)
+    except:
+        res=""
+    print (res)
 
-    res=res1.split('class="image"')[0].split("<a href=")
-    res=res[len(res)-1].split('"')
+    # res2=requests.get("https://en.wikipedia.org"+res[1]).text
 
-    print (res[1],"============")
-
-    res2=requests.get("https://en.wikipedia.org"+res[1]).text
-
-    res=res2.split('<img')[2].split('src="')[1].split('"')[0]
+    # res=res2.split('<img')[3].split('src="')[1].split('"')[0]
 
 
 
@@ -1433,9 +1450,13 @@ def searchfn(key):
     # print(imgurl)
 
 
-    print(res)
-    return res,txt
+    # print(res)
+    return res,txt2
 
+@app.errorhandler(404)
+def not_found(e):
+    print(e)
+    return '''<script>alert("No results found");</script>'''
 
 app.run(debug=True)
 
