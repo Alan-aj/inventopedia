@@ -1,4 +1,5 @@
 <!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<html>
 {% extends 'dashboard1.html' %}
 {% block head %}
 <script>
@@ -23,12 +24,15 @@
 
                     if (json.img == "/static/images/footer/poweredby_mediawiki_88x31.png" || json.img == "") {
 
+                        document.getElementById("top").innerHTML = br;
                         document.getElementById("res").innerHTML = "No results found";
                         document.getElementById("image").src = "";
                     }
                     else {
+                        document.getElementById("top").innerHTML = br;
                         document.getElementById("image").src = json.img;
                         document.getElementById("res").innerText = json.des;
+                        $("#image").show();
                     }
 
                 }
@@ -44,14 +48,93 @@
         });
     })
 </script>
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Lato:400,700,900);
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(to bottom, rgb(183, 219, 229) 0%, rgb(124, 175, 175) 65%, rgb(132, 217, 232) 100%) fixed;
+        /* background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/coc-background.jpg') no-repeat center center fixed; */
+        background-size: cover;
+        font: 14px/20px "Lato", Arial, sans-serif;
+        /* color: #9E9E9E; */
+        margin-top: 30px;
+    }
+
+    .slide-container {
+        margin: auto;
+        width: 600px;
+        text-align: center;
+    }
+
+    .wrapper {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+
+
+    .clash-card {
+        background: white;
+        width: 500px;
+        display: inline-block;
+        margin: auto;
+        margin-bottom: 30px;
+        border-radius: 14px + 5;
+        position: relative;
+        text-align: center;
+        box-shadow: -1px 15px 30px -12px black;
+        z-index: 9999;
+    }
+
+    .clash-card__image {
+        position: relative;
+        /* height: 230px; */
+        margin-bottom: 15px;
+        border-top-left-radius: 14px;
+        border-top-right-radius: 14px;
+    }
+
+
+
+
+    .clash-card__level {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 3px;
+        color: #EC9B3B;
+    }
+
+    .clash-card__unit-name {
+        text-transform:capitalize;
+        font-size: 26px;
+        color: black;
+        font-weight: 900;
+        margin-bottom: 5px;
+        margin-top: 30px;
+    }
+
+    .clash-card__unit-description {
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+   
+    
+</style>
 {% endblock %}
 {% block body %}
 
 
 <!-- <body> -->
-<h1 align="center" style="padding:20px;" class="text-5xl">WELCOME</h1>
+<h1 align="center" style="margin: 20px;" class="text-5xl">WELCOME</h1>
 <!-- <div class="box-border h-32 w-300 p-4 border-4 my-10 bg--300">Search</div> -->
-<div class="font-sans text-black h-50 bg- flex items-center justify-center">
+<div class="font-sans text-black mt-28 mb-8 flex items-center justify-center">
     <div class="border rounded overflow-hidden flex">
         <input type="text" class="px-12 py-3 text-2xl" placeholder="Search..." id="info">
         <button id="search" class="flex items-center justify-center px-4 border-l" style="background: #00B4CC;">
@@ -64,8 +147,43 @@
     </div><br>
 
 </div>
-<div>
+<div class="slide-container">
+<div class="wrapper" align="center">
+    <div class="clash-card barbarian">
+        
+        <!-- <div class="clash-card__level clash-card__level--barbarian">Level 4</div> -->
+        <div id="top" class="clash-card__unit-name">Inventopedia</div>
+        <div class="clash-card__unit-description" id="res">
+            Find out any information by searching above.
+        </div>
+
+        <!-- <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
+            <div class="one-third">
+                <div class="stat">20<sup>S</sup></div>
+                <div class="stat-value">Training</div>
+            </div>
+
+            <div class="one-third">
+                <div class="stat">16</div>
+                <div class="stat-value">Speed</div>
+            </div>
+
+            <div class="one-third no-border">
+                <div class="stat">150</div>
+                <div class="stat-value">Cost</div>
+            </div>
+
+        </div> -->
+        <div align="center" class="clash-card__image ">
+            <img id="image" src="" onerror='this.style.display = "none"' />
+        </div>
+
+    </div> <!-- end clash-card barbarian-->
+</div> <!-- end wrapper -->
+</div>
+<!-- <div>
     <p id="res"></p>
     <img src="" id="image">
-</div>
+</div> -->
 {% endblock %}
+</html>

@@ -15,7 +15,7 @@ from flask_mail import Mail
 
 import requests
 import re
-
+import html
 
 
 
@@ -1254,28 +1254,7 @@ def usemail():
         resp.headers['Access-Control-Allow-Origin'] = '*'
         return resp
 
-# @app.route("/usrname",methods=['POST'])
-# def usrname():
-#     print(request.form)
-#     usrname=request.form['brands']
-#     qry="SELECT `Username`FROM `login` where Username=%s"
-#     val=(usrname)
-#
-#     res=selectone(qry,val)
-#     print(res)
-#     if res is None:
-#
-#         resp = make_response(json.dumps(""))
-#
-#         resp.status_code = 200
-#         resp.headers['Access-Control-Allow-Origin'] = '*'
-#         return resp
-#
-#     else:
-#         resp = make_response(json.dumps("Username existing"))
-#
-#         resp.headers['Access-Control-Allow-Origin'] = '*'
-#         return resp
+
 @app.route("/emailrgs")
 def emailrgs():
     return render_template("login2.html")
@@ -1384,7 +1363,7 @@ def serinfo():
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
-import html   
+
 
 def searchfn(key):
     res1=requests.get("https://en.wikipedia.org/wiki/"+key).text
@@ -1395,7 +1374,7 @@ def searchfn(key):
     # print(res[1])
 
     match = re.search(r'mw-parser', res[1])
-# If-statement after search() tests if it succeeded
+
     if match:
         print('found', match.group())
         n = 2
@@ -1408,7 +1387,7 @@ def searchfn(key):
         count = len(res)
 
     txt=""
-    # print()
+
     for i in range(n,count):
 
         htmlString=res[i].split("</p>")[0]
@@ -1419,20 +1398,21 @@ def searchfn(key):
 
         txt=txt+s4+" "
         
-    # txt.replace("\n", "")
-    # print(html.unescape(txt))
+
     txt2 = html.unescape(txt)
     print(txt2)
     print("----------------")
 
     try:
         res=res1.split('class="thumbinner"')[1].split('src="')
-        res=res[1].split('"')[0]
-# [1].split('"')[0]
-    # print(res)
+        res=res[1].split('"')
+        # filter all images
+        img_match = [s for s in res if "//upload.wikimedia.org/wikipedia/commons/thumb/" in s]
+        print (img_match)
+        return img_match[0],txt2
     except:
         res=""
-    print (res)
+    
 
     # res2=requests.get("https://en.wikipedia.org"+res[1]).text
 
