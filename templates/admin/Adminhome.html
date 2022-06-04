@@ -1,23 +1,54 @@
 <!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
 {% extends 'dashboard1.html' %}
-{% block body %}
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-</head>
+{% block head %}
+<script>
 
-<body>
-<h1 align="center">WELCOME</h1>
-<!--<h1>Admin Home</h1>-->
-<!--<p><a href="manageinfo">Add and Manage</a></p>-->
-<!--<p><a href="verifyuserinfo">Verify user info</a></p>-->
-<!--<p><a href="viewquiz">Quiz</a></p>-->
-<!--<p><a href="viewfeedback">Reply inventors</a></p>-->
-<!--<p><a href="verifycomment">Verify Comment</a></p>-->
-<!--<p><a href="verifycertificate">Verify Patent</a></p>-->
-<!--<p><a href="Changepassword">Change password</a></p>-->
-<!--<p><a href="logout">Log out</a></p>-->
-</body>
+    $(document).ready(function () {
+        $("button#search").click(function () {
+            
+            var br = $('#info').val();
+            // console.log(br);
+            $.ajax({
+                type: 'POST',
+                url: "/serinfo",
+                data: { brand: br },
+
+                success: function (response) {
+                    console.log(response);
+                    var json = $.parseJSON(response);
+
+                    // console.log(json.des);
+                    document.getElementById("res").innerText = json.des;
+                    document.getElementById("image").src = json.img;
+                    
+                }
+            });
+
+        });
+    })
+</script>
 {% endblock %}
-</html>
+{% block body %}
+
+
+<!-- <body> -->
+<h1 align="center" style="padding:20px;" class="text-5xl">WELCOME</h1>
+<!-- <div class="box-border h-32 w-300 p-4 border-4 my-10 bg--300">Search</div> -->
+<div class="font-sans text-black min-h-screen bg- flex items-center justify-center">
+    <div class="border rounded overflow-hidden flex">
+        <input type="text" class="px-12 py-3 text-2xl" placeholder="Search..." id="info">
+        <button id="search" class="flex items-center justify-center px-4 border-l" style="background: #00B4CC;">
+            <svg class="h-4 w-4 text-grey-dark" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                    d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
+            </svg>
+        </button>
+    </div><br>
+    
+</div>
+<div>
+    <p id="res"></p>
+    <img src="" id="image" >
+</div>
+{% endblock %}

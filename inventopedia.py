@@ -13,8 +13,8 @@ import smtplib
 from email.mime.text import MIMEText
 from flask_mail import Mail
 
-
-
+import requests
+import re
 
 
 
@@ -95,7 +95,7 @@ def newlogin():
         return '''<script>alert("invalid"); window.location="/"</script>'''
     elif res[4]=="admin":
         session['lid']=res[0]
-        return '''<script>alert("Welcome Admin"); window.location="adminhom"</script>'''
+        return '''<script>alert("Welcome Admin"); window.location="adminhome"</script>'''
     elif res[4] == "user":
         session['lid']=res[0]
         print(session['lid'])
@@ -128,19 +128,28 @@ def addinfo():
 @app.route("/infoadd",methods=['post'])
 @login_required
 def infoadd():
-     yer=request.form['year']
-     ivntn=request.form['inv']
-     iname=request.form['inventor']
-     dscpn=request.form['description']
-     image=request.files['file']
-     file=secure_filename(image.filename)
-     print(file)
-     image.save(os.path.join("static/image/",file))
-     vdolnk=request.form['video']
-     qry="insert into information values(null,%s,%s,%s,%s,%s,%s,%s,'approved')"
-     val=(yer,ivntn,iname,dscpn,file,vdolnk,str(session['lid']))
-     iud(qry,val)
-     return'''<script>alert("information added");window.location="/manageinfo"</script>'''
+    yer=request.form['year']
+    ivntn=request.form['inv']
+    iname=request.form['inventor']
+    # dscpn=request.form['description']
+
+
+    # q="https://www.google.com/search?q="+ivntn+"+images"
+
+    # res=requests.get(q).text
+
+    # ress=res.split('class="BVG0Nb"')
+
+    # imgurl=ress[1].split('imgurl=')[1].split('&')[0]
+    # print(imgurl)
+
+    key = searchfn(ivntn)
+
+
+    qry="insert into information values(null,%s,%s,%s,%s,%s,%s,'approved')"
+    val=(yer,ivntn,iname,key[1],key[0],str(session['lid']))
+    iud(qry,val)
+    return'''<script>alert("information added");window.location="/manageinfo"</script>'''
 
 
 
@@ -554,13 +563,8 @@ def upinfo():
      invt=request.form['invt']
      iname=request.form['inventor']
      dscpn=request.form['description']
-     image=request.files['fileField']
-     file=secure_filename(image.filename)
-     print(file)
-     image.save(os.path.join("static/image/",file))
-     vdolnk=request.form['video']
-     qry="insert into information values(null,%s,%s,%s,%s,%s,%s,%s,'pending')"
-     val=(yer,invt,iname,dscpn,file,vdolnk,str(session['lid']))
+     qry="insert into information values(null,%s,%s,%s,%s,%s,'pending')"
+     val=(yer,invt,iname,dscpn,str(session['lid']))
      iud(qry,val)
      return'''<script>alert("information added");window.location="/viewupl"</script>'''
 
@@ -700,7 +704,7 @@ def viewcomm():
 @app.route("/viewinfo")
 @login_required
 def viewinfo():
-    qry="SELECT * FROM information WHERE STATUS='approved'"
+    qry="SELECT * FROM information WHERE status='approved'"
 
     res = select(qry)
     return render_template("user/Viewinformation.html",val=res)
@@ -1364,6 +1368,73 @@ def otpveritwo():
 
 
 
+@app.route('/serinfo' , methods=["post"])
+def serinfo():
+    # info=request.args.get('info')
+    
+    print(request.form)
+    info=request.form['brand']
+    key = searchfn(info)
+    dic = {
+        'img': key[0],
+        'des': key[1]
+    }
+    resp = make_response(json.dumps(dic))
+
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
+
+    
+
+def searchfn(key):
+    res1=requests.get("https://en.wikipedia.org/wiki/"+key).text
+    res=res1.split('<div id="toc"')[0]
+
+
+    res=res.split("<p>")
+    count = 3
+    if len(res) < 3:
+        count = len(res)
+
+    txt=""
+    # print()
+    for i in range(1,count):
+
+        htmlString=res[i].split("</p>")[0]
+        s2 = re.sub(r'<.*?>', '', htmlString)
+        s2=re.sub(r'&#91;.*?#93;', '', s2)
+        s3=re.sub('\s', ' ', s2)
+        s4 = re.sub(r'\([^)]*\)', '', s3)
+
+        txt=txt+s4+" "
+        
+    # txt.replace("\n", "")
+    print(txt)
+
+
+    res=res1.split('class="image"')[0].split("<a href=")
+    res=res[len(res)-1].split('"')
+
+    print (res[1],"============")
+
+    res2=requests.get("https://en.wikipedia.org"+res[1]).text
+
+    res=res2.split('<img')[2].split('src="')[1].split('"')[0]
+
+
+
+    # q="https://www.google.com/search?q="+key+"+images"
+
+    # res=requests.get(q).text
+
+    # ress=res.split('class="BVG0Nb"')
+
+    # imgurl=ress[1].split('imgurl=')[1].split('&')[0]
+    # print(imgurl)
+
+
+    print(res)
+    return res,txt
 
 
 app.run(debug=True)
