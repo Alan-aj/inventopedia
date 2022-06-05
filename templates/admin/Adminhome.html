@@ -20,7 +20,7 @@
 
                     // console.log(json.des);
                     // var desc = unescape(json.des)
-                    // console.log(desc)
+                    console.log(json)
 
                     if (json.img == "/static/images/footer/poweredby_mediawiki_88x31.png" || json.img == "") {
 
@@ -33,6 +33,7 @@
                         document.getElementById("image").src = json.img;
                         document.getElementById("res").innerText = json.des;
                         $("#image").show();
+                        // $("#slider").show();
                     }
 
                 }
@@ -84,6 +85,7 @@
         width: 500px;
         display: inline-block;
         margin: auto;
+        padding-bottom: 10px;
         margin-bottom: 30px;
         border-radius: 14px + 5;
         position: relative;
@@ -112,7 +114,7 @@
     }
 
     .clash-card__unit-name {
-        text-transform:capitalize;
+        text-transform: capitalize;
         font-size: 26px;
         color: black;
         font-weight: 900;
@@ -124,8 +126,28 @@
         padding: 20px;
         margin-bottom: 10px;
     }
-   
-    
+
+    .slick-prev {
+        left: 100px;
+        z-index: 999;
+    }
+
+    .slick-next {
+        right: 100px;
+        z-index: 999;
+    }
+
+    /* .slider {
+        display: none;
+    } */
+
+    /* .previous,
+    .next {
+        cursor: pointer;
+        
+        padding: 10px;
+        
+    } */
 </style>
 {% endblock %}
 {% block body %}
@@ -147,17 +169,19 @@
     </div><br>
 
 </div>
-<div class="slide-container">
-<div class="wrapper" align="center">
-    <div class="clash-card barbarian">
-        
-        <!-- <div class="clash-card__level clash-card__level--barbarian">Level 4</div> -->
-        <div id="top" class="clash-card__unit-name">Inventopedia</div>
-        <div class="clash-card__unit-description" id="res">
-            Find out any information by searching above.
-        </div>
 
-        <!-- <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
+<div class="slide-container">
+
+    <div class="wrapper" align="center">
+        <div class="clash-card">
+
+            <!-- <div class="clash-card__level clash-card__level--barbarian">Level 4</div> -->
+            <div id="top" class="clash-card__unit-name">Inventopedia</div>
+            <div class="clash-card__unit-description" id="res">
+                Find out any information by searching above.
+            </div>
+
+            <!-- <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
             <div class="one-third">
                 <div class="stat">20<sup>S</sup></div>
                 <div class="stat-value">Training</div>
@@ -174,16 +198,26 @@
             </div>
 
         </div> -->
-        <div align="center" class="clash-card__image ">
-            <img id="image" src="" onerror='this.style.display = "none"' />
-        </div>
+            <div align="center" class="clash-card__image ">
+                <img id="image" src="" onerror='this.style.display = "none"' />
+            </div>
+            <!-- <div class="slider" id="slider">
+                <a class="previous" onclick="moveSlides(-1)">
+                    <i class="fa fa-chevron-circle-left"></i>
+                </a>
+                <a class="next" onclick="moveSlides(1)">
+                    <i class="fa fa-chevron-circle-right"></i>
+                </a>
+            </div> -->
+        </div> <!-- end clash-card barbarian-->
+    </div> <!-- end wrapper -->
 
-    </div> <!-- end clash-card barbarian-->
-</div> <!-- end wrapper -->
 </div>
+
 <!-- <div>
     <p id="res"></p>
     <img src="" id="image">
 </div> -->
 {% endblock %}
+
 </html>

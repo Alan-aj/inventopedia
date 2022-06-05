@@ -1382,12 +1382,12 @@ def searchfn(key):
         print('did not find')
         n = 1
 
-    count = 3
-    if len(res) < 3:
+    count = 2
+    if len(res) < 2:
         count = len(res)
 
     txt=""
-
+    print(count)
     for i in range(n,count):
 
         htmlString=res[i].split("</p>")[0]
@@ -1404,10 +1404,19 @@ def searchfn(key):
     print("----------------")
 
     try:
-        res=res1.split('class="thumbinner"')[1].split('src="')
+        res=res1.split('class="thumbinner"')[1].split('src=')
         res=res[1].split('"')
         # filter all images
         img_match = [s for s in res if "//upload.wikimedia.org/wikipedia/commons/thumb/" in s]
+        # img_arr = []
+        # for i in img_match:
+        #     im = i.split(', ')
+        #     for j in im:
+        #         img_arr.append(j)
+
+        # result = f"{source[0: -1]}"
+        # img_str = map(str, img_match)
+        # img_arr = list(img_str) 
         print (img_match)
         return img_match[0],txt2
     except:
