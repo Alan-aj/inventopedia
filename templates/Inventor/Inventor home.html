@@ -1,25 +1,168 @@
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
-<!--<head>-->
-<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
-<!--<title>Untitled Document</title>-->
-<!--</head>-->
 {% extends 'dashboard3.html' %}
-{% block body %}
-<body>
-<h1 align="center">WELCOME</h1>
-<!--<h1>Inventor Home</h1>-->
-<!--<p><a href="managpatent">Add and Manage</a></p>-->
-<!--<p><a href="viewpatent">View Patent</a></p>-->
- <!--&lt;!&ndash;<p><a href="">Comment</a></p>&ndash;&gt;-->
-<!--<p><a href="doubtview">View Doubt</a></p>-->
-<!--<p><a href="feedback">Talk with Admin</a></p>-->
-<!--<p><a href="inventorchat">Chat</a></p>-->
-<!--<p><a href="Changepassword">Change password</a></p>-->
-<!--<p><a href="/">Logout</a></p>-->
+{% block head %}
+<script>
+
+    $(document).ready(function () {
+        $("button#search").click(function () {
+
+            var br = $('#info').val();
+            // console.log(br);
+            $.ajax({
+                type: 'POST',
+                url: "/serinfo",
+                data: { brand: br },
+
+                success: function (response) {
+                    // console.log(response);
+                    var json = $.parseJSON(response);
+
+                    // console.log(json.des);
+                    // var desc = unescape(json.des)
+                    console.log(json)
+
+                    if (json.img == "/static/images/footer/poweredby_mediawiki_88x31.png" || json.img == "") {
+
+                        document.getElementById("top").innerHTML = br;
+                        document.getElementById("res").innerHTML = "No results found";
+                        document.getElementById("image").src = "";
+                    }
+                    else {
+                        document.getElementById("top").innerHTML = br;
+                        document.getElementById("image").src = json.img;
+                        document.getElementById("res").innerText = json.des;
+                        $("#image").show();
+                        // $("#slider").show();
+                    }
+
+                }
+     
+            });
+
+        });
+    })
+</script>
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Lato:400,700,900);
 
 
 
-</body>
+    .slide-container {
+        margin: auto;
+        text-align: center;
+    }
+
+
+
+    .clash-card {
+        background: white;
+        width: 500px;
+        display: inline-block;
+        margin: auto;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        border-radius: 14px + 5;
+        /* position: relative; */
+        text-align: center;
+        box-shadow: -1px 15px 30px -12px black;
+        z-index: 9999;
+    }
+
+    .clash-card__image {
+        position: relative;
+        /* height: 230px; */
+        margin-bottom: 15px;
+        border-top-left-radius: 14px;
+        border-top-right-radius: 14px;
+    }
+
+
+
+
+    .clash-card__level {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 3px;
+        color: #EC9B3B;
+    }
+
+    .clash-card__unit-name {
+        text-transform: capitalize;
+        font-size: 26px;
+        color: black;
+        font-weight: 900;
+        margin-bottom: 5px;
+        margin-top: 30px;
+    }
+
+    .clash-card__unit-description {
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+
+    .slick-prev {
+        left: 100px;
+        z-index: 999;
+    }
+
+    .slick-next {
+        right: 100px;
+        z-index: 999;
+    }
+
+
+    @media screen and (max-width: 600px) {
+        .clash-card{
+            width: 400px;
+        }
+
+    }
+    @media screen and (max-width: 400px) {
+        .clash-card{
+            width: 330px;
+        }
+
+    }
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 {% endblock %}
-<!--</html>-->
+{% block body %}
+
+
+<div class="font-sans text-black mt-28 mb-8 flex items-center justify-center">
+    <div class="border rounded overflow-hidden flex">
+        <input type="text" class="px-12 py-3 text-1xl md:text-2xl" placeholder="Search..." id="info">
+        <button id="search" class="flex items-center justify-center px-4 border-l" style="background: #00B4CC;">
+            <svg class="h-4 w-4 text-grey-dark" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                    d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
+            </svg>
+        </button>
+    </div><br>
+
+</div>
+
+<div class="slide-container flex items-center justify-center">
+
+    <div class="wrapper" align="center">
+        <div class="clash-card">
+
+            <div id="top" class="clash-card__unit-name">Inventopedia</div>
+            <div class="clash-card__unit-description" id="res">
+                Find out any information by searching above.
+            </div>
+
+         
+            <div align="center" class="clash-card__image ">
+                <img id="image" src="" onerror='this.style.display = "none"' />
+            </div>
+        
+        </div> 
+    </div> 
+
+</div>
+
+{% endblock %}

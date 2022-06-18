@@ -69,7 +69,9 @@ def reg1():
 def login():
     return render_template("admin/Login.html")
 
-
+@app.route("/explore")
+def explore():
+    return render_template("explore.html")
 
 #
 # @app.route("/logout")
@@ -760,6 +762,15 @@ def rejectinfo():
 @login_required
 def inventorhome():
     return render_template("Inventor/Inventor home.html")
+
+@app.route("/viewin")
+@login_required
+def viewin():
+    qry="SELECT * FROM information WHERE status='approved'"
+
+    res = select(qry)
+    return render_template("Inventor/Viewinfo.html",val=res)
+
 
 @app.route('/uploadpatent')
 @login_required
