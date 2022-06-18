@@ -1458,7 +1458,7 @@ def not_found(e):
     print(e)
     return '''<script>alert("No results found");</script>'''
 
-app.run(debug=True)
+app.run(debug=False)
 
 
 
