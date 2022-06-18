@@ -1458,7 +1458,8 @@ def not_found(e):
     print(e)
     return '''<script>alert("No results found");</script>'''
 
-app.run(debug=False)
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 
