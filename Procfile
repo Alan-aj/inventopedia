@@ -1,1 +1,1 @@
-web: gunicorn app:inventopedia
+web: gunicorn inventopedia:app
