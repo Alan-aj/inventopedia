@@ -21,3 +21,4 @@
 1. Visit the homepage to explore inventions by selecting a specific year.
 2. Click on an invention to view detailed information about the invention and its inventor.
 3. Use the search feature to find specific inventions or inventors.
+
